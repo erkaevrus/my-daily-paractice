@@ -51,3 +51,16 @@ Ex: Input = ["Ryan", "Kieran", "Jason", "Yous"], Output = ["Ryan", "Yous"] */
 function friend(friends){
   return friends.filter(x => x.length === 4 && /[a-zA-Z]/.test(x))
 }
+
+
+// #6 Make the first char capitalize
+
+function capitalizeWord(word) {
+  return word[0].toUpperCase() + word.slice(1)
+}
+
+// #7 Given a string of digits, you should replace any digit below 5 with '0' and any digit 5 and above with '1'. Return the resulting string.
+
+function fakeBin(x){
+  return x.split('').map(x => +x < 5 ? '0' : '1').join('')
+}
