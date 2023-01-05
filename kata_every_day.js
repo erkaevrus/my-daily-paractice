@@ -64,3 +64,31 @@ function capitalizeWord(word) {
 function fakeBin(x){
   return x.split('').map(x => +x < 5 ? '0' : '1').join('')
 }
+
+
+
+// #8 //Написать функцию generatePassword которая создает пароли вида: 4i%X5uY@б, %m44ELp%, Zfj@O82@. Значения должны идти в случайном порядке.
+
+function generatePassword() {
+  const NUMBERS = '0123456789'
+  const upperChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const lowerChars = 'abcdefghijklmnopqrstuvxyz'
+  const SYMBOLS = '!@#$%'
+  const list = [NUMBERS, upperChars, lowerChars, SYMBOLS]
+  const password = []
+
+  for (i = 0; i <= 3; i++) {
+    password.push(getRandom(list[i]))
+    password.push(getRandom(list[i]))
+  }
+  const result = []
+  while (password.length > 0) {
+    result.push(password.splice(Math.round(Math.random() * (password.length - 1)),1))
+  }
+  return result.join('')
+}
+
+function getRandom(value) {
+  randomNum = Math.round(Math.random()* (value.length - 1))
+  return value[randomNum]
+}
