@@ -4,8 +4,6 @@
 //     "64607935616" -->      "#######5616"
 //               "1" -->                "1"
 //                "" -->                 ""*/
-
-
 function maskify(line) {
   if (line.length <= 4) {
   return line
@@ -23,52 +21,45 @@ function maskify(line) {
 
 /*#2 Simple, given a string of words, return the length of the shortest word(s).
 String will never be empty and you do not need to account for different data types. */
-
 function findShort(s){
   return Math.min(...(s.split(' ').map((x) => x.length)))
 }
 
 
 /*#3 In this kata you will create a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out. */
-
 function filter_list(l) {
   return l.filter((x) => typeof(x) !== 'string')
 }
 
 
-
 /*#4 In this kata, you are asked to square every digit of a number and concatenate them.
 For example, if we run 9119 through the function, 811181 will come out, because 92 is 81 and 12 is 1. */
-
 function squareDigits(num){
   return +(String(num).split('').map(x => x**2).join(''))
 }
 
+
 /*#5 Make a program that filters a list of strings and returns a list with only your friends name in it.
 If a name has exactly 4 letters in it, you can be sure that it has to be a friend of yours! Otherwise, you can be sure he's not...
 Ex: Input = ["Ryan", "Kieran", "Jason", "Yous"], Output = ["Ryan", "Yous"] */
-
 function friend(friends){
   return friends.filter(x => x.length === 4 && /[a-zA-Z]/.test(x))
 }
 
 
 // #6 Make the first char capitalize
-
 function capitalizeWord(word) {
   return word[0].toUpperCase() + word.slice(1)
 }
 
-// #7 Given a string of digits, you should replace any digit below 5 with '0' and any digit 5 and above with '1'. Return the resulting string.
 
+// #7 Given a string of digits, you should replace any digit below 5 with '0' and any digit 5 and above with '1'. Return the resulting string.
 function fakeBin(x){
   return x.split('').map(x => +x < 5 ? '0' : '1').join('')
 }
 
 
-
-// #8 //Написать функцию generatePassword которая создает пароли вида: 4i%X5uY@б, %m44ELp%, Zfj@O82@. Значения должны идти в случайном порядке.
-
+// #8 Написать функцию generatePassword которая создает пароли вида: 4i%X5uY@б, %m44ELp%, Zfj@O82@. Значения должны идти в случайном порядке.
 function generatePassword() {
   const NUMBERS = '0123456789'
   const upperChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -97,7 +88,6 @@ function getRandom(value) {
 // #9 Return the number (count) of vowels in the given string.
 // We will consider a, e, i, o, u as vowels for this Kata (but not y).
 // The input string will only consist of lower case letters and/or spaces.
-
 function getCount(str) {
   let count = 0
   const line = ['a', 'e', 'i', 'o', 'u']
@@ -109,4 +99,56 @@ function getCount(str) {
     }
   }
   return count
+}
+
+
+// #10 You are given a complex object that has many deeply nested variables. You don't want to go the usual if obj.property == null route. Create a prototype method that given a nested path, either return the value or undefined.
+/*const obj = {
+  person: {
+    name: 'joe',
+    history: {
+      hometown: 'bratislava',
+      bio: {
+        funFact: 'I like fishing.'
+      }
+    }
+  }
+}*/
+// obj.hash('person.name'); // 'joe'
+// obj.hash('person.history.bio'); // { funFact: 'I like fishing.' }
+// obj.hash('person.history.homeStreet'); // undefined
+// obj.hash('person.animal.pet.needNoseAntEater'); // undefined
+Object.prototype.hash = function(path) {
+  let line = this
+  const keys = path.split('.')
+  for (let key of keys) {
+    if (line[key]) {
+      line = line[key]
+    } else {
+      return undefined
+    }
+  }
+  return line
+}
+
+
+/* #11 For this exercise you will create a global flatten method. The method takes in any number of arguments and flattens them into a single array. If any of the arguments passed in are an array then the individual objects within the array will be flattened so that they exist at the same level as the other arguments. Any nested arrays, no matter how deep, should be flattened into the single array result.
+The following are examples of how this function would be used and what the expected results would be:
+flatten(1, [2, 3], 4, 5, [6, [7]]) // returns [1, 2, 3, 4, 5, 6, 7]
+flatten('a', ['b', 2], 3, null, [[4], ['c']]) // returns ['a', 'b', 2, 3, null, 4, 'c']*/
+function flatten(...args) {
+  const result = []
+
+  if (args.length === 0) {
+    return []
+  }
+
+  for (let item of args) {
+    if (Array.isArray(item)) {
+      result.push(...flatten(...item))
+    } else {
+      result.push(item)
+    }
+  }
+  return result
 }
