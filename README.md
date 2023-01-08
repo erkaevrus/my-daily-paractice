@@ -1,2 +1,2 @@
-# my-daily-paractice
+# my-daily-practice
 Daily solving programming tasks with Java Script
