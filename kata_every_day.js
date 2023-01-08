@@ -154,7 +154,7 @@ function flatten(...args) {
 }
 
 
-/*Your task is to implement function toReadable that converts given number, to readable string.
+/*#12 Your task is to implement function toReadable that converts given number, to readable string.
 toReadable(1); // Will return 'one'
 toReadable(997); //will return 'nine hundred ninety seven'*/
 function toReadable (number) {
