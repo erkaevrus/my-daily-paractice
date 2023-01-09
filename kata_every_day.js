@@ -253,3 +253,33 @@ function decode(expr) {
   }
   return result.trim()
 }
+
+
+/*14 Your task is to implement the so-called 'towel sort' algorithm.
+towelSort function should expect matrix of any shape for example:
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ],
+]
+Following matrix should be 'sorted' to:
+ [1, 2, 3, 6, 5, 4, 7, 8, 9 ]
+Write your code in `src/index.js. All test cases are designed as “error-free”, so don't worry about handling any errors.*/
+function towelSort (matrix) {
+  if (!matrix) {
+    return []
+  }
+  const result = []
+  for (let i = 0; i < matrix.length; i++) {
+    if (i % 2 === 0) {
+      for (let j = 0; j < matrix[i].length; j++) {
+        result.push(matrix[i][j])
+      }
+    } else {
+      for (let j = matrix[i].length - 1; j >= 0; j--) {
+        result.push(matrix[i][j])
+      }
+    }
+  }
+  return result
+}
