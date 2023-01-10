@@ -47,19 +47,19 @@ function friend(friends){
 }
 
 
-// #6 Make the first char capitalize
+//#6 Make the first char capitalize
 function capitalizeWord(word) {
   return word[0].toUpperCase() + word.slice(1)
 }
 
 
-// #7 Given a string of digits, you should replace any digit below 5 with '0' and any digit 5 and above with '1'. Return the resulting string.
+//#7 Given a string of digits, you should replace any digit below 5 with '0' and any digit 5 and above with '1'. Return the resulting string.
 function fakeBin(x){
   return x.split('').map(x => +x < 5 ? '0' : '1').join('')
 }
 
 
-// #8 Написать функцию generatePassword которая создает пароли вида: 4i%X5uY@б, %m44ELp%, Zfj@O82@. Значения должны идти в случайном порядке.
+//#8 Написать функцию generatePassword которая создает пароли вида: 4i%X5uY@б, %m44ELp%, Zfj@O82@. Значения должны идти в случайном порядке.
 function generatePassword() {
   const NUMBERS = '0123456789'
   const upperChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -85,7 +85,7 @@ function getRandom(value) {
 }
 
 
-// #9 Return the number (count) of vowels in the given string.
+//#9 Return the number (count) of vowels in the given string.
 // We will consider a, e, i, o, u as vowels for this Kata (but not y).
 // The input string will only consist of lower case letters and/or spaces.
 function getCount(str) {
@@ -102,7 +102,7 @@ function getCount(str) {
 }
 
 
-// #10 You are given a complex object that has many deeply nested variables. You don't want to go the usual if obj.property == null route. Create a prototype method that given a nested path, either return the value or undefined.
+//#10 You are given a complex object that has many deeply nested variables. You don't want to go the usual if obj.property == null route. Create a prototype method that given a nested path, either return the value or undefined.
 /*const obj = {
   person: {
     name: 'joe',
@@ -132,7 +132,7 @@ Object.prototype.hash = function(path) {
 }
 
 
-/* #11 For this exercise you will create a global flatten method. The method takes in any number of arguments and flattens them into a single array. If any of the arguments passed in are an array then the individual objects within the array will be flattened so that they exist at the same level as the other arguments. Any nested arrays, no matter how deep, should be flattened into the single array result.
+/*#11 For this exercise you will create a global flatten method. The method takes in any number of arguments and flattens them into a single array. If any of the arguments passed in are an array then the individual objects within the array will be flattened so that they exist at the same level as the other arguments. Any nested arrays, no matter how deep, should be flattened into the single array result.
 The following are examples of how this function would be used and what the expected results would be:
 flatten(1, [2, 3], 4, 5, [6, [7]]) // returns [1, 2, 3, 4, 5, 6, 7]
 flatten('a', ['b', 2], 3, null, [[4], ['c']]) // returns ['a', 'b', 2, 3, null, 4, 'c']*/
@@ -176,7 +176,7 @@ function toReadable (number) {
 }
 
 
-/*13 Your task is to write a function, that decodes Morse code and returns a string. Write your solution in src/index.js
+/*#13 Your task is to write a function, that decodes Morse code and returns a string. Write your solution in src/index.js
 Input: String. Its length is multiple of 10.
 Each letter from alphabet encoded with dots(.) and dashes(-). 10 stands for dot(.), 11 stands for dash(-).
 Each encoded letter's length is 10.
@@ -255,7 +255,7 @@ function decode(expr) {
 }
 
 
-/*14 Your task is to implement the so-called 'towel sort' algorithm.
+/*#14 Your task is to implement the so-called 'towel sort' algorithm.
 towelSort function should expect matrix of any shape for example:
 [
  [ 1, 2, 3 ],
@@ -282,4 +282,14 @@ function towelSort (matrix) {
     }
   }
   return result
+}
+
+
+//#15 Реализация Метода map с помощью цикла for
+function mapCycle(arr, cb) {
+  const res = []
+  for (let i = 0; i < arr.length; i++) {
+    res.push(cb(arr[i]))
+  }
+  return res
 }
