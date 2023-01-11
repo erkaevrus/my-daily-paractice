@@ -294,7 +294,7 @@ function mapCycle(arr, cb) {
   return res
 }
 
-// #16 Реализация метода map с помощью Рекурсии
+//#16 Реализация метода map с помощью Рекурсии
 function mapRecursion(){
   const res = []
   let i = 0
@@ -353,4 +353,23 @@ function happyNumbers(x){
     }
   }
   return result
+}
+
+
+//#18 Реализация метода filter с помощью Рекурсии
+function filterRecursion(){
+  const res = []
+  let j = 0
+
+  function inner(arr,cb) {
+    if (j >= arr.length) {
+      return res
+    }
+    if (cb(arr[j])) {
+      res.push(arr[j])
+    }
+    j++
+    return inner(arr,cb)
+  }
+  return inner
 }
