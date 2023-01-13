@@ -294,6 +294,7 @@ function mapCycle(arr, cb) {
   return res
 }
 
+
 //#16 Реализация метода map с помощью Рекурсии
 function mapRecursion(){
   const res = []
@@ -372,4 +373,21 @@ function filterRecursion(){
     return inner(arr,cb)
   }
   return inner
+}
+
+
+//#19 написать функцию которая печатает матрицу 10х10 с цифрами от 1 до 100!
+function Matrix() {
+  const result = []
+  let line = []
+  let count = 1
+  for (let i = 1; i <= 10; i++) {
+    line = []
+    for (let j = 1; j <= 10; j++) {
+      line.push(count)
+      count++
+    }
+    result.push(line)
+  }
+  console.log(result)
 }
