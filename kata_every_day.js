@@ -401,3 +401,35 @@ Examples (input -> output)
 function mergeArrays(arr1, arr2) {
   return [...new Set(arr1.concat(arr2))].sort((a,b) => a-b)
 }
+
+
+/*#21 For this kata you will have to forget how to add two numbers.
+In simple terms, our method does not like the principle of carrying over numbers and just writes down every number it calculates :-)
+You may assume both integers are positive integers.
+add(1222, 30277) -> 31499
+add(1236, 30977) -> 31111013*/
+function add(num1, num2) {
+  let arr1 = [...String(num1)]
+  let arr2 = [...String(num2)]
+  let result = []
+
+  if (arr1.length < arr2.length) {
+    const count = arr2.length - arr1.length
+    for (let i = 0; i < count; i++) {
+      arr1.unshift(0)
+    }
+  }
+
+  if (arr1.length > arr2.length) {
+    const count = arr1.length - arr2.length
+    for (let i = 0; i < count; i++) {
+      arr2.unshift(0)
+    }
+  }
+
+  for (let i = arr1.length - 1; i >= 0; i--) {
+  result.unshift(Number(arr1[i]) + Number(arr2[i]))
+  }
+
+  return Number(result.join(''))
+}
