@@ -447,3 +447,24 @@ function colourAssociation(array){
   }
   return result
 }
+
+
+/*#23 Your task is to write a function that takes two or more objects and returns a new object which combines all the input objects.
+All input object properties will have only numeric values. Objects are combined together so that the values of matching keys are added together.
+An example:
+const objA = { a: 10, b: 20, c: 30 }
+const objB = { a: 3, c: 6, d: 3 }
+combine(objA, objB) // Returns { a: 13, b: 20, c: 36, d: 3 }*/
+function combine(...args){
+  const result = {}
+  for (let arrElem of args) {
+    for (let objItem in arrElem) {
+      if (objItem in result) {
+        result[objItem] += arrElem[objItem]
+      } else {
+        result[objItem] = arrElem[objItem]
+      }
+    }
+  }
+  return result
+}
