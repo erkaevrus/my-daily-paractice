@@ -18,6 +18,14 @@ function maskify(line) {
   return res.reverse().join('')
 }
 
+// revision1 18.01.2023
+function maskify1(num) {
+  if (num.length <=4) {
+    return num
+  }
+  return '#'.repeat(num.length - 4) + num.slice(-4)
+}
+
 
 /*#2 Simple, given a string of words, return the length of the shortest word(s).
 String will never be empty and you do not need to account for different data types. */
@@ -492,7 +500,7 @@ function nbDig(n, d) {
 }
 
 
-/*#25 Given two integer arrays where the second array is a shuffled duplicate of the first array with one element missing, find the missing element.
+/*18.01.2023 #25 Given two integer arrays where the second array is a shuffled duplicate of the first array with one element missing, find the missing element.
 Please note, there may be duplicates in the arrays, so checking if a numerical value exists in one and not the other is not a valid solution.
 find_missing([1, 2, 2, 3], [1, 2, 3]) => 2*/
 function findMissing(arr1, arr2) {
