@@ -490,3 +490,20 @@ function nbDig(n, d) {
   }
   return count
 }
+
+
+/*#25 Given two integer arrays where the second array is a shuffled duplicate of the first array with one element missing, find the missing element.
+Please note, there may be duplicates in the arrays, so checking if a numerical value exists in one and not the other is not a valid solution.
+find_missing([1, 2, 2, 3], [1, 2, 3]) => 2*/
+function findMissing(arr1, arr2) {
+  for (let i = 0; i < arr1.length; i++) {
+    for(let j = 0; j < arr2.length; j++) {
+      if (arr1[i] === arr2[j]) {
+        arr1.splice(i, 1, ' ')
+        arr2.splice(j, 1, ' ')
+        break
+      }
+    }
+  }
+  return Number(arr1.join('').trim())
+}
