@@ -515,3 +515,19 @@ function findMissing(arr1, arr2) {
   }
   return Number(arr1.join('').trim())
 }
+
+
+/*19.01.2023 #26 Given an array/list [] of n integers , find maximum triplet sum in the array Without duplications .
+Notes :
+Array/list size is at least 3 .
+Array/list numbers could be a mixture of positives , negatives and zeros .
+Repetition of numbers in the array/list could occur , So (duplications are not included when summing).*/
+function maxTriSum(numbers){
+  let temp = []
+  while (temp.length !== 3) {
+    let maxNum = Math.max.apply(null, numbers)
+    temp.push(maxNum)
+    numbers = numbers.filter(item => item !== maxNum)
+  }
+  return temp.reduce((sum, current) => sum + current, 0)
+}
