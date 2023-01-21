@@ -579,3 +579,36 @@ function spiralMatrix(n) {
 
   return result
 }
+
+
+/*21.01.2023 #28 The input will be an array of dictionaries.
+Return the values as a string-seperated sentence in the order of their keys' integer equivalent (increasing order).
+The keys are not reoccurring and their range is -999 < key < 999. The dictionaries' keys & values will always be strings and will always not be empty.
+Example
+Input:
+List = [
+        {'4': 'dog' }, {'2': 'took'}, {'3': 'his'},
+        {'-2': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'}
+       ]
+Output:
+'Vatsan took his dog for a spin' */
+function sentence(List) {
+  const temp = []
+  let res = ''
+  for (let obj of List) {
+    for (let key in obj)
+      temp.push(Number(key))
+  }
+  temp.sort((a,b) => a - b)
+
+  for (let item of temp) {
+    for (let obj of List) {
+      if (obj[String(item)] === undefined) {
+        continue
+      }
+      res += obj[String(item)]
+      res += ' '
+    }
+  }
+  return res.trim()
+}
