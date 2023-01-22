@@ -612,3 +612,26 @@ function sentence(List) {
   }
   return res.trim()
 }
+
+
+/*22.01.2023 #29 написать функцию которая печатает матрицу 10х10 с цифрами от 1 до 100  рандомном порядке. Цифры не повторяются!*/
+function randomMatrix() {
+  const result = []
+  let line = []
+  const store = []
+  let randomNum
+  while (store.length < 100) {
+    randomNum = Math.round(Math.random()*100)
+    if (!(store.includes(randomNum)) && randomNum !== 0) {
+      store.push(randomNum)
+    }
+  }
+  for (let i = 1; i <= 10; i++) {
+    line = []
+    for (let j = 1; j <= 10; j++) {
+      line.push(store.pop())
+    }
+    result.push(line)
+  }
+  return result
+  }
