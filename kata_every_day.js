@@ -636,7 +636,8 @@ function randomMatrix() {
   return result
   }
 
-/*Add a groupBy method to Array.prototype so that elements in an array could be grouped by the result of evaluating a function on each element.
+
+/*23.01.2023 #30 Add a groupBy method to Array.prototype so that elements in an array could be grouped by the result of evaluating a function on each element.
 The method should return an object, in which for each different value returned by the function there is a property whose value is the array of elements that return the same value.
 If no function is passed, the element itself should be taken.
 Example:
@@ -669,4 +670,16 @@ Array.prototype.groupBy = function(cb) {
     }
   }
 return obj
+}
+
+
+/*24.01.2023 #31 vowelOne
+Write a function that takes a string and outputs a strings of 1's and 0's where vowels become 1's and non-vowels become 0's.
+All non-vowels including non alpha characters (spaces,commas etc.) should be included.
+Examples:
+vowelOne( "abceios" ) // "1001110"
+vowelOne( "aeiou, abc" ) // "1111100100"*/
+function vowelOne(s){
+  const vowel = ['a', 'e', 'i', 'o', 'u']
+  return s.split('').map(x => vowel.includes(x.toLowerCase()) ? 1 : 0).join('')
 }
