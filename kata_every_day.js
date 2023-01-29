@@ -749,7 +749,7 @@ function whoseBicycle(diary1, diary2, diary3) {
 }
 
 
-/**28.01.2023 #35 Who is the killer?
+/*28.01.2023 #35 Who is the killer?
 Some people have been killed!
 You have managed to narrow the suspects down to just a few. Luckily, you know every person who those suspects have seen on the day of the murders.
 Task.
@@ -775,4 +775,23 @@ function killer(suspectInfo, dead) {
       }
     }
   }
+}
+
+
+/*29.01.2023 #36 Explanation:
+The minimum sum obtained from summing each two integers product ,  5*2 + 3*4 = 22
+minSum({12,6,10,26,3,24}) ==> return (342)
+Explanation:
+The minimum sum obtained from summing each two integers product ,  26*3 + 24*6 + 12*10 = 342
+minSum({9,2,8,7,5,4,0,6}) ==> return (74)
+Explanation:
+The minimum sum obtained from summing each two integers product ,  9*0 + 8*2 +7*4 +6*5 = 74*/
+function minSum(arr) {
+  let sum = 0
+  while (arr.length !== 0) {
+    sum  += (Math.min(...arr) * Math.max(...arr))
+    arr.splice(arr.indexOf(Math.min(...arr)), 1)
+    arr.splice(arr.indexOf(Math.max(...arr)), 1)
+}
+  return sum
 }
