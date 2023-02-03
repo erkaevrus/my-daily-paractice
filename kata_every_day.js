@@ -947,6 +947,7 @@ function likes(names) {
  }
 }
 
+
 /*01.02.2023 #44 After yet another dispute on their game the Bingo Association decides to change course and automate the game.
 Can you help the association by writing a method to create a random Bingo card?
 Bingo Cards
@@ -1066,4 +1067,22 @@ var whatTimeIsIt = function(angle) {
     tempMins = String(Math.floor(angle % 30 / 0.5))
     mins = tempMins.length === 1 ? '0' + tempMins : tempMins
   return `${hours}:${mins}`
+}
+
+
+/*03.02.2023 #46 /*Есть массив [1,1,1,2,2,2,5,5,2,7]
+Вернуть уникальный отсортированный массив по частотности цифр
+2 встречается больше всех, потом 1 и так далее
+Правильный ответ должен выглядеть так [2,1,5,7]*/
+function sortArray(arr) {
+  const obj = {}
+
+  for (elem of arr) {
+    if (obj[elem] !== undefined) {
+      obj[elem].push(elem)
+    } else {
+      obj[elem] = [elem]
+    }
+  }
+  return [...new Set(arr.sort((a, b) => obj[b].length - obj[a].length))]
 }
