@@ -1129,7 +1129,7 @@ function toWeirdCase(string){
 }
 
 
-/*06.02.2023 The rgb function is incomplete. Complete it so that passing in RGB decimal values will result in a hexadecimal representation being returned. Valid decimal values for RGB are 0 - 255. Any values that fall out of that range must be rounded to the closest valid value.
+/*06.02.2023 #49 The rgb function is incomplete. Complete it so that passing in RGB decimal values will result in a hexadecimal representation being returned. Valid decimal values for RGB are 0 - 255. Any values that fall out of that range must be rounded to the closest valid value.
 Note: Your answer should always be 6 characters long, the shorthand with 3 will not work here.
 The following are examples of expected output values:
 rgb(255, 255, 255) // returns FFFFFF
@@ -1144,4 +1144,15 @@ function rgb(r, g, b){
     temp[i] = temp[i] > 255 ? 255 : temp[i]
   }
   return temp.map(x => x.toString(16)).map(x => x.length !== 2 ? `0${x}` : x).join('').toUpperCase()
+}
+
+
+/*07.02.2023 #50 Trolls are attacking your comment section!
+A common way to deal with this situation is to remove all of the vowels from the trolls' comments, neutralizing the threat.
+Your task is to write a function that takes a string and return a new string with all vowels removed.
+For example, the string "This website is for losers LOL!" would become "Ths wbst s fr lsrs LL!".
+Note: for this kata y isn't considered a vowel.*/
+function disemvowel(str) {
+  const vowel = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+  return str.split('').filter(x => vowel.includes(x) !== true).join('')
 }
