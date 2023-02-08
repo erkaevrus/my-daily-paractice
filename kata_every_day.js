@@ -1156,3 +1156,38 @@ function disemvowel(str) {
   const vowel = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
   return str.split('').filter(x => vowel.includes(x) !== true).join('')
 }
+
+
+/*
+08.02.2023 #51 One of the common ways of representing color is the RGB color model, in which the Red, Green, and Blue primary colors of light are added together in various ways to reproduce a broad array of colors.
+One of the ways to determine brightness of a color is to find the value V of the alternative HSV (Hue, Saturation, Value) color model. Value is defined as the largest component of a color:
+V = max(R,G,B)
+You are given a list of colors in 6-digit hexidecimal notation #RRGGBB. Return the brightest of these colors!
+For example,
+brightest(["#001000", "#000000"]) == "#001000"
+brightest(["#ABCDEF", "#123456"]) == "#ABCDEF"
+If there are multiple brightest colors, return the first one:
+brightest(["#00FF00", "#FFFF00", "#01130F"]) == "#00FF00"
+Note that both input and output should use upper case for characters A, B, C, D, E, F.
+*/
+/*
+1. Понимание:
+-> Нужно вернуть исходное значение самого яркого цвета. Самый яркий цвет определяем по формуле V = max(R,G,B)
+2. Планирование + Декомпозиция:
+-> Надо разделить массив на части и убрать #
+-> Разобрать значение цвета по 2 цифры
+-> Создать объект, где ключи это max(R,G,B), а значение это цвета "00FF00"
+-> Из Math.max (ключи объекта) вернуть значение оригинального цвета
+*/
+function brightest(colors){
+  const temp = colors.map(x => x.replace('#', ''))
+  const obj ={}
+
+  for (elem of temp) {
+      let max = Math.max(Number(`0x${elem.slice(0,2)}`), Number(`0x${elem.slice(2,4)}`), Number(`0x${elem.slice(4)}`))
+      if (obj[max] === undefined) {
+        obj[max] = elem
+      }
+  }
+  return `#${obj[Math.max(...Object.keys(obj))]}`
+}
