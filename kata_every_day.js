@@ -1191,3 +1191,31 @@ function brightest(colors){
   }
   return `#${obj[Math.max(...Object.keys(obj))]}`
 }
+
+
+/* 09.02.2023 #52
+An isogram is a word that has no repeating letters, consecutive or non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter case.
+Example: (Input --> Output)
+"Dermatoglyphics" --> true "aba" --> false "moOse" --> false (ignore letter case)
+isIsogram "Dermatoglyphics" = true
+isIsogram "moose" = false
+isIsogram "aba" = false
+*/
+/*
+1. Понимание -> Написать функцию предикат (вернуть false/true). true - строке-аргументе нет повторяющихся букв. false - есть повторы. Регистр букв игнорируем.
+2. Планирование + Декомпозиция
+-> создать пустой массив
+-> в цикле перебрать строку-аргумент, добавляя туда все буквы по очереди
+-> добавить проверку: если в массиве уже есть буква из строки вернуть false
+-> после отработки цикла вернуть true
+*/
+function isIsogram(str){
+    const temp = []
+    for (letter of str) {
+        if(temp.includes(letter.toLowerCase())) {
+            return false
+        }
+        temp.push(letter.toLowerCase())
+    }
+    return true
+}
