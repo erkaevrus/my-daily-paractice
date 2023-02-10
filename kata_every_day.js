@@ -1,9 +1,10 @@
-
-/*#1 Your task is to write a function maskify, which changes all but the last four characters into '#'
-//"4556364607935616" --> "############5616"
-//     "64607935616" -->      "#######5616"
-//               "1" -->                "1"
-//                "" -->                 ""*/
+/*#1
+Your task is to write a function maskify, which changes all but the last four characters into '#'
+"4556364607935616" --> "############5616"
+    "64607935616" -->      "#######5616"
+               "1" -->                "1"
+                "" -->                 ""
+*/
 function maskify(line) {
   if (line.length <= 4) {
   return line
@@ -18,7 +19,7 @@ function maskify(line) {
   return res.reverse().join('')
 }
 
-// revision1 18.01.2023
+// ---revision1 18.01.2023
 function maskify1(num) {
   if (num.length <=4) {
     return num
@@ -27,21 +28,31 @@ function maskify1(num) {
 }
 
 
-/*#2 Simple, given a string of words, return the length of the shortest word(s).
-String will never be empty and you do not need to account for different data types. */
+/*#2
+Simple, given a string of words, return the length of the shortest word(s).
+String will never be empty and you do not need to account for different data types.
+*/
 function findShort(s){
   return Math.min(...(s.split(' ').map((x) => x.length)))
 }
 
 
-/*#3 In this kata you will create a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out. */
+/*#3 |CW 7kyu|
+In this kata you will create a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out.
+Example
+filter_list([1,2,'a','b']) == [1,2]
+filter_list([1,'a','b',0,15]) == [1,0,15]
+filter_list([1,2,'aasf','1','123',123]) == [1,2,123]
+ */
 function filter_list(l) {
   return l.filter((x) => typeof(x) !== 'string')
 }
 
 
-/*#4 In this kata, you are asked to square every digit of a number and concatenate them.
-For example, if we run 9119 through the function, 811181 will come out, because 92 is 81 and 12 is 1. */
+/*#4 |CW 7kyu|
+In this kata, you are asked to square every digit of a number and concatenate them.
+For example, if we run 9119 through the function, 811181 will come out, because 92 is 81 and 12 is 1.
+*/
 function squareDigits(num){
   return +(String(num).split('').map(x => x**2).join(''))
 }
@@ -1218,4 +1229,19 @@ function isIsogram(str){
         temp.push(letter.toLowerCase())
     }
     return true
+}
+
+
+/* 10.02.2023 #53 |CW 7kyu|
+Given a string made of digits [0-9], return a string where each digit is repeated a number of times equals to its value.
+Examples
+explode("312")
+should return :
+"333122"
+explode("102269")
+should return :
+"12222666666999999999"
+*/
+function explode(s) {
+  return s.split('').map(x => x.repeat(Number(x))).join('')
 }
