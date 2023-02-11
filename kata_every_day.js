@@ -1247,7 +1247,7 @@ function explode(s) {
 }
 
 
-/*10.02.2023 #53 |CW 6kyu|
+/*10.02.2023 #54 |CW 6kyu|
 Johnny is a farmer and he annually holds a beet farmers convention "Drop the beet".
 Every year he takes photos of farmers handshaking. Johnny knows that no two farmers handshake more than once. He also knows that some of the possible handshake combinations may not happen.
 However, Johnny would like to know the minimal amount of people that participated this year just by counting all the handshakes.
@@ -1257,4 +1257,28 @@ function getParticipants(handshakes){
   if (handshakes === 0) return 0
   let descriminant = 1 + 8 * handshakes
   return Math.ceil((1 + Math.sqrt(descriminant))/2)
+}
+
+
+/* 11.02.2023 #55 |CW 6kyu|
+The goal of this exercise is to convert a string to a new string where each character in the new string is "(" if that character appears only once in the original string, or ")" if that character appears more than once in the original string. Ignore capitalization when determining if a character is a duplicate.
+Examples
+"din"      =>  "((("
+"recede"   =>  "()()()"
+"Success"  =>  ")())())"
+"(( @"     =>  "))(("
+Notes
+Assertion messages may be unclear about what they display in some languages. If you read "...It Should encode XXX", the "XXX" is the expected result, not the input!
+*/
+/*
+1. Понимание -> Вернуть строку. Если символ в строке-аргументе встречатеся более 1 раза, заменить его на ")". Если только 1 раз, заменить на "("
+2. Планирование + Декомпозиция
+-> из строки-аргумента сделать массив
+-> пройтись по элементам массива в цикле
+-> если таких элементов больше нет, в результирующую строку добавить "("
+-> если > 1, то вернуть в результирующую строку ")"
+*/
+
+function duplicateEncode(word){
+  return word.split('').map(x => word.split('').filter(y => y.toLowerCase() === x.toLowerCase()).length > 1 ? ')' : '(').join('')
 }
