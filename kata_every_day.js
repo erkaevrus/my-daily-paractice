@@ -1278,7 +1278,25 @@ Assertion messages may be unclear about what they display in some languages. If 
 -> если таких элементов больше нет, в результирующую строку добавить "("
 -> если > 1, то вернуть в результирующую строку ")"
 */
-
 function duplicateEncode(word){
   return word.split('').map(x => word.split('').filter(y => y.toLowerCase() === x.toLowerCase()).length > 1 ? ')' : '(').join('')
+}
+
+
+/*
+12.02.2023 #56
+Реализуйте функцию toRoman, которая принимает число и конвертирует его в римские цифры.
+*/
+function toRoman(number) {
+  const RomansNum = [
+      ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
+      ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
+      ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'],
+      ['', 'M', 'MM', 'MMM']
+  ]
+
+  return RomansNum[3][Math.floor(number / 1000)] +
+       RomansNum[2][Math.floor(number % 1000 / 100)] +
+       RomansNum[1][Math.floor(number % 100 / 10)] +
+       RomansNum[0][Math.floor(number % 10)]
 }
