@@ -1334,6 +1334,7 @@ function nthFibo(n) {
   return fibSum
 }
 
+
 /* 14.02.2023 #58 |CW 7kyu|
 Haskell has some useful functions for dealing with lists:
 $ ghci
@@ -1374,3 +1375,34 @@ function head(arr) {
   function last(arr) {
     return arr.at(-1)
   }
+
+
+/* 14.02.2023 #59 |CW 6kyu|
+You are given an array. Complete the function that returns the number of ALL elements within an array, including any nested arrays.
+Examples
+[]                   -->  0
+[1, 2, 3]            -->  3
+["x", "y", ["z"]]    -->  4
+[1, 2, [3, 4, [5]]]  -->  7
+The input will always be an array.
+*/
+/*
+1. Понимание -> Написать функцию, которая возвращает количество элементов в массиве, включая вложенные массивы.
+2. Планирование + Декомпозиция
+-> создаем переменную счетчик
+-> В цикле перебираем массив-аргумент
+-> Если наш элемент массива является объектом, увеличваем счетчик на 1 и  снова заходим в массив и перебраем его
+-> Если наш элемент не объект, то просто увеличиваем счетчик
+*/
+function deepCount(a){
+    let count = 0
+    for (let item of a) {
+        if(typeof item === "object") {
+            count++
+            count += deepCount(item)
+        } else {
+            count++
+        }
+    }
+    return count
+}
