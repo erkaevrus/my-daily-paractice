@@ -1443,3 +1443,32 @@ function getLengthOfMissingArray(arrayOfArrays) {
         }
     }
 }
+
+
+/* 16.02.2023 #61 |6kyu|
+Winter is coming, you must prepare your ski holidays. The objective of this kata is to determine the number of pair of gloves you can constitute from the gloves you have in your drawer.
+Given an array describing the color of each glove, return the number of pairs you can constitute, assuming that only gloves of the same color can form pairs.
+Examples:
+input = ["red", "green", "red", "blue", "blue"]
+result = 2 (1 red pair + 1 blue pair)
+input = ["red", "red", "red", "red", "red", "red"]
+result = 3 (3 red pairs)
+*/
+/*
+1. Понимание -> Написать функцию, которая возвращает количество возможных пар перчаток одинакового цвета.
+2. Планирование + Декомпозиция
+-> Создать пустой объект
+-> В цикле по массиву заполнить объект, ключ = цвет, значение = количество перчаток в массиве
+-> Пройтись по объекту и вернуть количество получившихся пар
+*/
+function numberOfPairs(gloves) {
+    const obj = {}
+    for (elem of gloves) {
+        if (obj[elem] === undefined ) {
+            obj[elem] = 1
+            } else {
+            obj[elem]++
+        }
+    }
+    return Object.values(obj).map(x => Math.floor(x/2)).reduce((acc, curr) => acc + curr)
+}
