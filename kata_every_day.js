@@ -1474,7 +1474,6 @@ function numberOfPairs(gloves) {
 }
 
 
-
 /* 17.02.2023 #62 |7kyu|
 Write a function that can return the smallest value of an array or the index of that value. The function's 2nd parameter will tell whether it should return the value or the index.
 Assume the first parameter will always be an array filled with at least 1 number and no duplicates. Assume the second parameter will be a string holding one of two values: 'value' and 'index'.
@@ -1485,4 +1484,33 @@ function min(arr, toReturn) {
     return toReturn === 'value' ?
            Math.min(...arr) :
            arr.indexOf(Math.min(...arr))
+  }
+
+
+/* 18.02.2023 #63 |6kyu|
+In this kata you're expected to sort an array of 32-bit integers in ascending order of the number of on bits they have.
+E.g Given the array [7, 6, 15, 8]
+7 has 3 on bits (000...0111)
+6 has 2 on bits (000...0011)
+15 has 4 on bits (000...1111)
+8 has 1 on bit (000...1000)
+So the array in sorted order would be [8, 6, 7, 15].
+In cases where two numbers have the same number of bits, compare their real values instead.
+E.g between 10 (...1010) and 12 (...1100), they both have the same number of on bits '2' but the integer 10 is less than 12 so it comes first in sorted order.
+Your task is to write the function sortBybit() that takes an array of integers and sort them as described above.
+Note: your solution has to sort the array in place.
+Example:
+[3, 8, 3, 6, 5, 7, 9, 1]   =>    [1, 8, 3, 3, 5, 6, 9, 7]
+*/
+/*
+1. Понимание -> Написать функцию, которая возвращает отсортированный массив по количеству битов в 32х битном представлении числа
+Если количество битов одинаковое, отсортировать по реальному значению. Массив отсортировать на месте.
+2. Планирование + Декомпозиция
+-> Сначала отсортировать массив по значению в десятичной системе с помощью sort()
+-> Найти количество битов в каждом числе
+-> Отсортировать значение по количеству битов в 32х битном представлении:
+*/
+function sortByBit(arr) {
+    arr.sort((a, b) => a - b)
+    arr.sort((a, b) => a.toString(2).split('').filter(x => x === '1').length - b.toString(2).split('').filter(x => x === '1').length)
   }
