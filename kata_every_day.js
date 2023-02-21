@@ -1516,7 +1516,7 @@ function sortByBit(arr) {
   }
 
 
-/*18.02.2023 #64 |4kyu|
+/*19.02.2023 #64 |4kyu|
 Your task in order to complete this Kata is to write a function which formats a duration, given as a number of seconds, in a human-friendly way.
 The function must accept a non-negative integer. If it is zero, it just returns "now". Otherwise, the duration is expressed as a combination of years, days, hours, minutes and seconds.
 It is much easier to understand with an example:
@@ -1615,4 +1615,25 @@ function recycle(array) {
         }
     }
     return bin
+}
+
+
+/*21.02.2023 #66 |CW 7kyu|
+Friday 13th or Black Friday is considered as unlucky day. Calculate how many unlucky days are in the given year.
+Find the number of Friday 13th in the given year.
+Input: Year in Gregorian calendar as integer.
+Output: Number of Black Fridays in the year as an integer.
+Examples:
+unluckyDays(2015) == 3
+unluckyDays(1986) == 1
+*/
+function unluckyDays(year) {
+    let count = 0
+    for (let month = 0; month < 12; month ++) {
+        let date = new Date(year, month, 13)
+        if (date.getDay() === 5) {
+        count++
+        }
+    }
+    return count
 }
