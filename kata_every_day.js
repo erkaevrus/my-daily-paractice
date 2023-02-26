@@ -1710,3 +1710,55 @@ Examples
 function myLanguages(results) {
     return  Object.keys(results).filter(x => results[x] >= 60).sort((a, b) => results[b] - results[a])
 }
+
+
+/*26.02.2023 #70 |7kyu|
+Story
+Your online store likes to give out coupons for special occasions. Some customers try to cheat the system by entering invalid codes or using expired coupons.
+Task
+Your mission:
+Write a function called checkCoupon which verifies that a coupon code is valid and not expired.
+A coupon is no more valid on the day AFTER the expiration date. All dates will be passed as strings in this format: "MONTH DATE, YEAR".
+Examples:
+checkCoupon("123", "123", "July 9, 2015", "July 9, 2015")  ===  true
+checkCoupon("123", "123", "July 9, 2015", "July 2, 2015")  ===  false
+*/
+/*
+1. Понимание -> написать функцию, которая проверяет купон на действительность и возвращает true/false. Коды купонов должны совпадать. Купон должен быть с неистекшей датой.
+2. Планирование + Декомпозиция
+-> сравнить коды купонов
+-> Убедиться, что сегодняшняя дата <= чем, дата истечения купона
+*/
+
+function checkCoupon(enteredCode, correctCode, currentDate, expirationDate){
+    if (enteredCode !== correctCode) return false
+
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    const currentDateArr = currentDate.split(' ')
+    const expirationDateArr = expirationDate.split(' ')
+
+    const currentYear = Number(currentDateArr[2])
+    const expirationYear = Number(expirationDateArr[2])
+    const currentMonth = currentDateArr[0]
+    const expirationMonth = expirationDateArr[0]
+    const currentDay = Number(currentDateArr[1].slice(0, -1))
+    const expirationDay = Number(expirationDateArr[1].slice(0, -1))
+
+    if (currentYear > expirationYear) {
+        return false
+    } else if (currentYear < expirationYear) {
+        return true
+    }
+
+    if (months.indexOf(currentMonth) > months.indexOf(expirationMonth)) {
+        return false
+    } else if (months.indexOf(currentMonth) < months.indexOf(expirationMonth)) {
+        return true
+    }
+
+    if (currentDay > expirationDay) {
+        return false
+    } else  {
+        return true
+    }
+}
