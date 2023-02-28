@@ -1729,7 +1729,6 @@ checkCoupon("123", "123", "July 9, 2015", "July 2, 2015")  ===  false
 -> сравнить коды купонов
 -> Убедиться, что сегодняшняя дата <= чем, дата истечения купона
 */
-
 function checkCoupon(enteredCode, correctCode, currentDate, expirationDate){
     if (enteredCode !== correctCode) return false
 
@@ -1762,3 +1761,59 @@ function checkCoupon(enteredCode, correctCode, currentDate, expirationDate){
         return true
     }
 }
+
+
+/*27.02.2023 #71 |6kyu|
+There's no such thing as private properties on a coffeescript object! But, maybe there are?
+Implement a function createSecretHolder(secret) which accepts any value as secret and returns an object with ONLY two methods
+getSecret() which returns the secret
+setSecret() which sets the secret
+obj = createSecretHolder(5)
+obj.getSecret() # returns 5
+obj.setSecret(2)
+obj.getSecret() # returns 2
+*/
+/*
+1. Понимание -> написать функцию, которая принимает любое значение и возвращает объект с двумя методами.
+2. Планирование + Декомпозиция
+-> создать объект
+-> создать методы внутри объекта
+-> вернуть объект
+*/
+function createSecretHolder(secret) {
+    let storageSecret = secret
+    return {
+        setSecret: function(secret) {
+            storageSecret = secret
+        },
+        getSecret: function() {
+            return storageSecret
+        }
+    }
+}
+
+
+/*28.02.2023 #72 |6kyu|
+We want to create a function, which returns an array of functions, which return their index in the array. For better understanding, here an example:
+var callbacks = createFunctions(5); // create an array, containing 5 functions
+callbacks[0](); // must return 0
+callbacks[3](); // must return 3
+We already implemented that function, but when we actually run the code, the result doesn't look like what we expected. Can you spot, what's wrong with it? A test fixture is also available
+*/
+/*
+1. Понимание -> написать функцию, принимает число n. Возвращает массив функций длинной n. Каждая функция возвращает свой индекс в массиве.
+2. Планирование + Декомпозиция
+-> создать массив колбэков
+-> в цикле до n, добавлять функцию. Каждая функция в своей области видимости запоминает свой индекс
+-> вернуть массив колбэков
+*/
+function createFunctions(n) {
+    var callbacks = []
+
+    for (let i=0; i<n; i++) {
+      callbacks.push(function() {
+        return i
+      })
+    }
+    return callbacks
+  }
