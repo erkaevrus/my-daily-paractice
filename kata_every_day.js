@@ -1874,3 +1874,36 @@ Testing: [1, 0, 1, 1] ==> 11
 However, the arrays can have varying lengths, not just limited to 4.
 */
 const binaryArrayToNumber = arr => parseInt(arr.join(''), 2)
+
+
+/*04.03.2023 #76 |6kyu|
+Your task is to sort a given string. Each word in the string will contain a single number. This number is the position the word should have in the result.
+Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0).
+If the input string is empty, return an empty string. The words in the input String will only contain valid consecutive numbers.
+Examples
+"is2 Thi1s T4est 3a"  -->  "Thi1s is2 3a T4est"
+"4of Fo1r pe6ople g3ood th5e the2"  -->  "Fo1r the2 g3ood 4of th5e pe6ople"
+""  -->  ""
+*/
+/*
+1. Понимание -> написать функцию, которая принимает строку. В слове строки есть цифра. Вернуть отсортированную строку по цифре в каждом слове.
+2. Планирование + Декомпозиция
+-> сделать из строки массив
+-> создать объект где ключ это слово, а значение это номер в слове
+-> собрать отсортированную строку
+*/
+function order(words){
+    const digits = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    const arr = words.split(' ')
+    const obj = {}
+
+    for (let word of arr) {
+        for (let i = 0; i < word.length; i++) {
+            if (digits.includes(word[i])) {
+                obj[word] = word[i]
+                continue
+            }
+        }
+    }
+    return arr.sort((a, b) => Number(obj[a]) - Number(obj[b])).join(' ')
+}
