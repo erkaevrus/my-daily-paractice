@@ -2072,3 +2072,38 @@ function openOrSenior(data){
     }
     return result;
   }
+
+
+/*13.03.2023 #82
+Реализовать собственную функцию bind
+Пример:
+function logPerson() {
+	console.log(‘Person: ${this.name}, ${this.age}, ${this.job’})
+}
+
+const person1 = {name: ‘Михаил’, age: 22, job: ‘Frontend’}
+const person2 = {name: ‘Елена’, age: 19, job: ‘SMM’}
+
+bind(person1, logPerson)
+bind(person2, logPerson)
+ */
+/*
+1. Понимание -> написать функцию bind, которая принимает функцию и контекст. И возвращает функцию, с привязанным контекстом.
+2. Планирование + Декомпозиция
+-> Привязать контекст функции можно, вызвав эту функцию внутри объекта. Для этого:
+-> Внутри возвращаемой функции создадим уникальную строку с помощью Date.now().toString()
+-> Добавим в объект-контекст метод-функцию по этому уникальному ключу
+-> Запишем в результат вызов этого метода внутри нового контекста
+-> удалим этот метод из объекта, чтобы он не засорял нам объект
+-> вернем результат
+-> функция bind будет возвращать новую функцию, которую надо вызвать с аргументами контекста и функции, к которой нужно привязать этот контекст.
+*/
+function bind(context, func) {
+    return function() {
+        const uniqId = Date.now().toString()
+        context[uniqId] = func
+        const result = context[uniqId]()
+        delete context[uniqId]
+        return result
+    }
+}
