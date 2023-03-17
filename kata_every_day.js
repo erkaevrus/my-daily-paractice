@@ -2166,6 +2166,7 @@ function isSantaClausable(obj) {
     return result = property.filter(x => typeof obj[x] === 'function').length === 3
 }
 
+
 /*16.03.2023 #85 |7kyu|
 For this exercise you should create a JavaScript class like object called "Animal" that takes in "name" and "type" arguments. It should have a toString method that returns a human readable string indicating the argument information passed in. It should also allow the name property to be set.
 
@@ -2188,4 +2189,21 @@ class Animal {
       return `${this.name} is a ${this.type}`
     }
 
+  }
+
+
+/*17.03.2023 #86 |8kyu|
+Write a function findNeedle() that takes an array full of junk but containing one "needle"
+
+After your function finds the needle it should return a message (as a string) that says:
+
+"found the needle at position " plus the index it found the needle, so:
+
+Example(Input --> Output)
+
+["hay", "junk", "hay", "hay", "moreJunk", "needle", "randomJunk"] --> "found the needle at position 5"
+Note: In COBOL, it should return "found the needle at position 6"
+*/
+function findNeedle(haystack) {
+    return `found the needle at position ${haystack.indexOf('needle')}`
   }
