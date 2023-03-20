@@ -2208,6 +2208,7 @@ function findNeedle(haystack) {
     return `found the needle at position ${haystack.indexOf('needle')}`
   }
 
+
 /*18.03.2023 #87 |7kyu|
 Preloaded for you in this Kata is a class Animal:
 
@@ -2277,3 +2278,39 @@ class Dog extends Animal {
         return `Hello ${this.master}`
     }
 }
+
+
+/*20.03.2023 #88 |7kyu|
+Given the triangle of consecutive odd numbers:
+
+             1
+          3     5
+       7     9    11
+   13    15    17    19
+21    23    25    27    29
+...
+Calculate the sum of the numbers in the nth row of this triangle (starting at index 1) e.g.: (Input --> Output)
+
+1 -->  1
+2 --> 3 + 5 = 8
+*/
+function rowSumOddNumbers(n) {
+    const result = []
+    let count = 1
+    let temp = []
+
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; temp.length <= i; j++) {
+            temp.push(count)
+            count += 2
+        }
+        result.push(temp)
+        temp = []
+    }
+    return result[n - 1].reduce((acc, curr) => acc + curr)
+  }
+
+  //best practice :)
+  function rowSumOddNumbers(n) {
+    return Math.pow(n, 3);
+  }
