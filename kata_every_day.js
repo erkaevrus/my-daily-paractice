@@ -2352,3 +2352,55 @@ Note: Empty arrays should return 0.
 function findAverage(array) {
     return array.length === 0 ? 0 : array.reduce((acc, cur) => acc + cur) / array.length
   }
+
+
+/*24.03.2023 #91 |6kyu|
+Build Tower
+Build a pyramid-shaped tower, as an array/list of strings, given a positive integer number of floors. A tower block is represented with "*" character.
+
+For example, a tower with 3 floors looks like this:
+
+[
+  "  *  ",
+  " *** ",
+  "*****"
+]
+And a tower with 6 floors looks like this:
+
+[
+  "     *     ",
+  "    ***    ",
+  "   *****   ",
+  "  *******  ",
+  " ********* ",
+  "***********"
+]
+*/
+/*
+1. Понимание -> написать функцию, которая строит пирамиду вида:
+ [
+  "  *  ",
+  " *** ",
+  "*****"
+]
+где количество этажей задается параметром функции nFloors.
+
+2. Планирование + Декомпозиция
+-> количество блоков "*" в основании пирамиды: (nFloors * 2 - 1)
+-> создать стартовую строку-основание и сделать ее массивом
+-> В цикле добавлять строки в массив. На каждой итерации заменять крайние блоки "*"  пробелами"
+-> Перевернуть массив и вернуть из функции
+*/
+function towerBuilder(nFloors) {
+
+    let floor = `${'*'.repeat(nFloors * 2 - 1)}`
+    const tower = [floor]
+    let space = 1
+
+    for (let i = 1; i < nFloors; i++) {
+        let temp = `${' '.repeat(space)}${floor.slice(space * 2)}${' '.repeat(space)}`
+        tower.push(temp)
+        space++
+    }
+    return tower.reverse()
+}
