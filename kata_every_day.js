@@ -1857,6 +1857,18 @@ function findUniq(arr) {
 return temp1.length < temp2.length ? temp1.join('') : temp2.join('')
 }
 
+// ---revision1 25.03.2023
+function findUniq(arr) {
+    const temp = Array.from(new Set(arr))
+    let count = 0
+    for (let elem of arr) {
+        if(temp[0] === elem) {
+        count++
+        }
+    }
+    return count > 1 ? temp[1] : temp[0]
+}
+
 
 /*03.03.2023 #75 |7kyu|
 Given an array of ones and zeroes, convert the equivalent binary value to an integer.
