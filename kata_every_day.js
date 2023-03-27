@@ -2475,3 +2475,4 @@ function longestConsec(strarr, k) {
     }
     return Object.keys(result).find(key => result[key] === Math.max(...Object.values(result)))
 }
+//тест
