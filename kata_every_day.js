@@ -2429,3 +2429,49 @@ Your function takes two arguments:
 function twiceAsOld(dadYearsOld, sonYearsOld) {
     return Math.abs(dadYearsOld - sonYearsOld * 2)
   }
+
+
+/*27.03.2023 #93 |6kyu|
+You are given an array(list) strarr of strings and an integer k. Your task is to return the first longest string consisting of k consecutive strings taken in the array.
+
+Examples:
+strarr = ["tree", "foling", "trashy", "blue", "abcdef", "uvwxyz"], k = 2
+
+Concatenate the consecutive strings of strarr by 2, we get:
+
+treefoling   (length 10)  concatenation of strarr[0] and strarr[1]
+folingtrashy ("      12)  concatenation of strarr[1] and strarr[2]
+trashyblue   ("      10)  concatenation of strarr[2] and strarr[3]
+blueabcdef   ("      10)  concatenation of strarr[3] and strarr[4]
+abcdefuvwxyz ("      12)  concatenation of strarr[4] and strarr[5]
+
+Two strings are the longest: "folingtrashy" and "abcdefuvwxyz".
+The first that came is "folingtrashy" so
+longest_consec(strarr, 2) should return "folingtrashy".
+
+In the same way:
+longest_consec(["zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"], 2) --> "abigailtheta"
+n being the length of the string array, if n = 0 or k > n or k <= 0 return "" (return Nothing in Elm, "nothing" in Erlang).
+
+Note
+consecutive strings : follow one after another without an interruption
+*/
+/*
+1. Понимание -> написать функцию, которая принимает массив строк и число k. И возвращает самую длинную последовательность k строк из массива.
+Если длина входного массива = 0  или < k или k <= 0 вернуть пустую строку.
+2. Планирование + Декомпозиция
+-> создать пустой объект
+-> в цикле заполнить объект, где ключ - сконкатенированная строка, значение длина этой строки
+-> выполнить поиск по объекту и вернуть ключ с самым большим значением.
+*/
+function longestConsec(strarr, k) {
+    if ((strarr.length === 0 || strarr.length < k) || k <= 0) return ''
+    let result = {}
+
+    while(strarr.length >= k) {
+        let key = strarr.slice(0, k).join('')
+        result[key] = key.length
+        strarr.shift()
+    }
+    return Object.keys(result).find(key => result[key] === Math.max(...Object.values(result)))
+}
