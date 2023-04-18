@@ -2545,3 +2545,65 @@ function solution(string) {
     }
     return res
 }
+
+
+/*18.04.2023 #98 |4kyu|
+Write two functions that convert a roman numeral to and from an integer value. Multiple roman numeral values will be tested for each function.
+
+Modern Roman numerals are written by expressing each digit separately starting with the left most digit and skipping any digit with a value of zero. In Roman numerals 1990 is rendered: 1000=M, 900=CM, 90=XC; resulting in MCMXC. 2008 is written as 2000=MM, 8=VIII; or MMVIII. 1666 uses each Roman symbol in descending order: MDCLXVI.
+
+Input range : 1 <= n < 4000
+
+In this kata 4 should be represented as IV, NOT as IIII (the "watchmaker's four").
+
+Examples
+to roman:
+2000 -> "MM"
+1666 -> "MDCLXVI"
+1000 -> "M"
+ 400 -> "CD"
+  90 -> "XC"
+  40 -> "XL"
+   1 -> "I"
+
+from roman:
+"MM"      -> 2000
+"MDCLXVI" -> 1666
+"M"       -> 1000
+"CD"      -> 400
+"XC"      -> 90
+"XL"      -> 40
+"I"       -> 1
+*/
+class RomanNumerals {
+    static toRoman(num) {
+        const romansNum = [
+            ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
+            ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
+            ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'],
+            ['', 'M', 'MM', 'MMM']
+        ]
+
+        return romansNum[3][Math.floor(num / 1000)] +
+               romansNum[2][Math.floor(num % 1000 / 100)] +
+               romansNum[1][Math.floor(num % 100 / 10)] +
+               romansNum[0][Math.floor(num % 10)]
+    }
+
+    static fromRoman(str) {
+        let  res = 0
+        const romans = {
+            'I': 1,
+            'V': 5,
+            'X': 10,
+            'L': 50,
+            'C': 100,
+            'D': 500,
+            'M': 1000
+        }
+        for (let i = 0; i < str.length; i++) {
+            romans[str[i]] >= romans[str[i + 1]] ? res += romans[str[i]]: str[i + 1] ? res -= romans[str[i]] : res += romans[str[i]]
+        }
+        return res
+    }
+  }
