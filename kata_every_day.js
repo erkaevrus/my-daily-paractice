@@ -2607,3 +2607,34 @@ class RomanNumerals {
         return res
     }
   }
+
+
+/*19.04.2023 #99 |6kyu|
+Given a string of words, you need to find the highest scoring word.
+
+Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc.
+
+For example, the score of abad is 8 (1 + 2 + 1 + 4).
+
+You need to return the highest scoring word as a string.
+
+If two words score the same, return the word that appears earliest in the original string.
+
+All letters will be lowercase and all inputs will be valid.
+*/
+function high(x){
+    const temp = x.split(' ')
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    const alphabetScore = {}
+    for (let i = 1; i <= alphabet.length; i++) {
+      alphabetScore[alphabet[i - 1]] = i
+    }
+
+    const res = {}
+    for (let word of temp) {
+      res[word] = word.split('').map(x => alphabetScore[x]).reduce((curr, acc) => curr + acc)
+    }
+    let maxWord = Math.max(...Object.values(res))
+    return Object.keys(res).find(key => res[key] === maxWord)
+
+}
