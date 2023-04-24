@@ -2636,5 +2636,60 @@ function high(x){
     }
     let maxWord = Math.max(...Object.values(res))
     return Object.keys(res).find(key => res[key] === maxWord)
+}
 
+
+/*24.04.2023 #100 |6kyu|
+Given an array (arr) as an argument complete the function countSmileys that should return the total number of smiling faces.
+
+Rules for a smiling face:
+
+Each smiley face must contain a valid pair of eyes. Eyes can be marked as : or ;
+A smiley face can have a nose but it does not have to. Valid characters for a nose are - or ~
+Every smiling face must have a smiling mouth that should be marked with either ) or D
+No additional characters are allowed except for those mentioned.
+
+Valid smiley face examples: :) :D ;-D :~)
+Invalid smiley faces: ;( :> :} :]
+
+Example
+countSmileys([':)', ';(', ';}', ':-D']);       // should return 2;
+countSmileys([';D', ':-(', ':-)', ';~)']);     // should return 3;
+countSmileys([';]', ':[', ';*', ':$', ';-D']); // should return 1;
+Note
+In case of an empty array return 0. You will not be tested with invalid input (input will always be an array). Order of the face (eyes, nose, mouth) elements will always be the same.
+*/
+function countSmileys(arr) {
+  let count = 0
+
+  for (let face of arr) {
+    if (!(face[0] === ':' || face[0] === ';')) {
+      console.log('first conditions')
+      continue
+    }
+
+    if (!(face.split('').includes('D') || face.split('').includes(')'))) {
+      console.log('second conditions')
+      continue
+      }
+
+    if (face.length > 3) {
+      continue
+    }
+
+    let flag = true
+
+    for (let char of face) {
+      if (!([':', ';', '-', '~', ')', 'D'].includes(char))) {
+          flag = false
+          break
+          }
+    }
+    if (flag === false) {
+      continue
+    }
+    count++
+  }
+
+ return count
 }
