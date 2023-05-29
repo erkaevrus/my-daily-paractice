@@ -1042,6 +1042,38 @@ function getRandom(min, max) {
   return Math.floor(rand);
 }
 
+// ---revision1 29.05.2023
+function getCard() {
+  const bingo = []
+  const letters = {
+    'B': [1, 15],
+    'I': [16, 30],
+    'N': [31, 45],
+    'G': [46, 60],
+    'O': [61, 75]
+  }
+  
+  for (char in letters) {
+    let temp = []
+    while(temp.length < 5) {
+      let value = getRandom(letters[char][0], letters[char][1])
+      if (!temp.includes(char + value)) {
+        temp.push(char + value)
+      }
+    }
+    if (char === "N") {
+      temp.pop()
+    }
+    bingo.push(...temp)
+  }
+  return bingo
+}
+
+function getRandom(min, max) {
+let rand = min + Math.random() * (max + 1 - min);
+return Math.floor(rand);
+}
+
 
 /*02.02.2023 #45 Story
 Due to lack of maintenance the minute-hand has fallen off Town Hall clock face.
