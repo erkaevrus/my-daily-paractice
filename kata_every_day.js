@@ -3054,3 +3054,25 @@ function createPhoneNumber(numbers){
   return `(${numbers.slice(0, 3).join('')}) ${numbers.slice(3, 6).join('')}-${numbers.slice(6).join('')}`
 }
 
+
+/*30.05.2023 #111 |7kyu|
+ATM machines allow 4 or 6 digit PIN codes and PIN codes cannot contain anything but exactly 4 digits or exactly 6 digits.
+
+If the function is passed a valid PIN string, return true, else return false.
+
+Examples (Input --> Output)
+"1234"   -->  true
+"12345"  -->  false
+"a234"   -->  false
+*/
+function validatePIN (pin) {
+  if (pin.length < 4) return false
+  if (pin.length === 5) return false
+  if (pin.length > 6) return false
+  if (pin.trim().length !== pin.length) return false
+  
+  for (let char of pin) {
+    if (isNaN(Number(char))) return false
+  }
+  return true
+}
