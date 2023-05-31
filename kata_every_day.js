@@ -3142,13 +3142,28 @@ junk -> False
 Hint
 The brute force approach would be to generate all the permutations of the string and check each one of them whether it is a palindrome. However, an optimized approach will not require this at all.
 */
-
 function permuteAPalindrome (input) { 
   const obj = {}
   for (let char of input) {
     if (obj[char]) { obj[char] += 1} 
     else {obj[char] = 1}
   }
-  
   return Object.values(obj).filter(x => x % 2 !== 0).length < 2
+}
+
+/*31.05.2023 #115 |5kyu|
+In this example you have to validate if a user input string is alphanumeric. The given string is not nil/null/NULL/None, so you don't have to check that.
+The string has the following conditions to be alphanumeric:
+At least one character ("" is not valid)
+Allowed characters are uppercase / lowercase latin letters and digits from 0 to 9
+No whitespaces / underscore
+ */
+function alphanumeric(string){
+  const simbols = '1234567890abcdefghijklmnopqrstuvwxyz'.split('')
+  if (!string) return false
+  
+  for (let char of string) {
+    if (!simbols.includes(char.toLowerCase())) return false
+  }
+  return true
 }
