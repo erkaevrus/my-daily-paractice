@@ -3288,3 +3288,51 @@ function undoRedo(object) {
     }
   }
 }
+
+
+/*09.06.2023 #118 |6kyu|
+In input string word(1 word):
+replace the vowel with the nearest left consonant.
+replace the consonant with the nearest right vowel.
+P.S. To complete this task imagine the alphabet is a circle (connect the first and last element of the array in the mind). For example, 'a' replace with 'z', 'y' with 'a', etc.(see below)
+For example:
+'codewars' => 'enedazuu'
+'cat' => 'ezu'
+'abcdtuvwxyz' => 'zeeeutaaaaa'
+*/
+function replaceLetters(word) {
+  const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+  const consonants = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z'];
+  const vowels = ['a','e','i','o','u'];
+  
+  let res = ''
+
+  for (let char of word) {
+    if (vowels.includes(char)) {
+      let index = alphabet.indexOf(char)
+      while(true) {
+        index--
+        if (index < 0) {
+          index = 25
+        }
+        if (consonants.includes(alphabet[index])) {
+          res += alphabet[index]
+          break
+        }
+      }
+    } else {
+      let index = alphabet.indexOf(char)
+      while(true) {
+        index++
+        if (index > 25) {
+          index = 0
+        }
+        if (vowels.includes(alphabet[index])) {
+          res += alphabet[index]
+          break
+        }
+      }
+    }
+  }
+  return res
+}
