@@ -3399,7 +3399,7 @@ function rotate(str){
 }
 
 
-/*#121 |7kyu|
+/*12.06.23 #121 |7kyu|
 Fun with ES6 Classes #3 - Cuboids, Cubes and Getters
 Task
 Define the following classes.
@@ -3433,5 +3433,27 @@ class Cube extends Cuboid {
     super(length)
     this.height = this.length
     this.width = this.length
+  }
+}
+
+
+/*12.06.2023 #122 |7kyu|
+Define a class Cube whose constructor function takes exactly one parameter length and stores the value of the argument into this.length. You will then define both a getter and a setter for the surfaceArea and volume of the cube.
+ */
+class Cube {
+  constructor(length) {
+      this.length = length;
+  }
+  get surfaceArea() {
+      return 6 * this.length ** 2;
+  }
+  set surfaceArea(value) {
+      this.length = Math.sqrt(value / 6);
+  }
+  get volume() {
+      return this.length ** 3;
+  }
+  set volume(value) {
+      this.length = Math.cbrt(value);
   }
 }
